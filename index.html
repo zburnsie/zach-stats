@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zach Burnside · Career Stats</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <svg class="header-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" stroke="#FF6B00" stroke-width="1.5"/>
+        <path d="M12 2C12 2 8 7 8 12C8 17 12 22 12 22" stroke="#FF6B00" stroke-width="1.5"/>
+        <path d="M12 2C12 2 16 7 16 12C16 17 12 22 12 22" stroke="#FF6B00" stroke-width="1.5"/>
+        <path d="M2 12H22" stroke="#FF6B00" stroke-width="1.5"/>
+        <path d="M3.5 7H20.5" stroke="#FF6B00" stroke-width="1"/>
+        <path d="M3.5 17H20.5" stroke="#FF6B00" stroke-width="1"/>
+      </svg>
+      <div>
+        <h1 class="header-title">ZACH BURNSIDE</h1>
+        <p class="header-sub">Career Basketball Stats · 2023–2026</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero: Card + Career Overview -->
+    <section class="hero">
+
+      <!-- Topps-style Card -->
+      <div class="topps-card" id="toppsCard" onclick="flipCard()">
+        <div class="card-inner" id="cardInner">
+          <!-- FRONT -->
+          <div class="card-face card-front">
+            <div class="foil-overlay"></div>
+            <div class="card-top-bar">
+              <span class="card-league-text">BASKETBALL</span>
+              <span class="card-year">2023–26</span>
+            </div>
+            <div class="card-photo-wrap">
+              <img src="zach.jpg" alt="Zach Burnside" class="card-photo">
+              <div class="card-photo-gradient"></div>
+            </div>
+            <div class="card-bottom">
+              <div class="card-name-row">
+                <span class="card-name">BURNSIDE</span>
+                <span class="card-number">ZB</span>
+              </div>
+              <div class="card-quick-stats">
+                <div class="qs-item">
+                  <span class="qs-val">22.1</span>
+                  <span class="qs-label">PPG</span>
+                </div>
+                <div class="qs-sep"></div>
+                <div class="qs-item">
+                  <span class="qs-val">73.9%</span>
+                  <span class="qs-label">FT%</span>
+                </div>
+                <div class="qs-sep"></div>
+                <div class="qs-item">
+                  <span class="qs-val">36.9%</span>
+                  <span class="qs-label">3PT%</span>
+                </div>
+              </div>
+              <div class="card-brand">
+                <span>ZB CARDS</span>
+                <span class="brand-dot">·</span>
+                <span>CAREER SERIES</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BACK -->
+          <div class="card-face card-back">
+            <div class="back-header">
+              <div class="back-name">ZACH BURNSIDE</div>
+              <div class="back-pos">SG · UTAH REC LEAGUES</div>
+            </div>
+            <div class="back-divider"></div>
+            <div class="back-table">
+              <div class="back-table-head">
+                <span>SEASON</span><span>GP</span><span>PPG</span><span>FT%</span><span>3PT%</span>
+              </div>
+              <div class="back-table-row" id="br-2324">
+                <span>2023-24</span><span>20</span><span>21.7</span><span>71.3%</span><span>38.2%</span>
+              </div>
+              <div class="back-table-row" id="br-2425">
+                <span>2024-25</span><span>21</span><span>22.3</span><span>80.0%</span><span>35.0%</span>
+              </div>
+              <div class="back-table-row" id="br-2526">
+                <span>2025-26</span><span>17</span><span>22.4</span><span>68.8%</span><span>37.7%</span>
+              </div>
+              <div class="back-divider" style="margin: 6px 0;"></div>
+              <div class="back-table-row back-career-row">
+                <span>CAREER</span><span>58</span><span>22.1</span><span>73.9%</span><span>36.9%</span>
+              </div>
+            </div>
+            <div class="back-divider"></div>
+            <div class="back-highlights">
+              <div class="bh-item">
+                <span class="bh-val">58</span>
+                <span class="bh-label">GAMES</span>
+              </div>
+              <div class="bh-item">
+                <span class="bh-val" id="back-record">38-20</span>
+                <span class="bh-label">RECORD</span>
+              </div>
+              <div class="bh-item">
+                <span class="bh-val">42</span>
+                <span class="bh-label">CAREER HIGH</span>
+              </div>
+            </div>
+            <div class="back-hint">← tap to flip</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Career Stat Panels -->
+      <div class="career-panel">
+        <h2 class="panel-heading">Career Overview</h2>
+        <div class="stat-grid" id="statGrid">
+          <div class="stat-card">
+            <div class="stat-val" id="sc-ppg">22.1</div>
+            <div class="stat-lbl">AVG PPG</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="sc-ft">73.9%</div>
+            <div class="stat-lbl">FREE THROW %</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="sc-3pt">36.9%</div>
+            <div class="stat-lbl">3-POINT %</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="sc-record">38-20</div>
+            <div class="stat-lbl">WIN-LOSS</div>
+          </div>
+          <div class="stat-card stat-card--gold">
+            <div class="stat-val" id="sc-high">42</div>
+            <div class="stat-lbl">CAREER HIGH</div>
+          </div>
+          <div class="stat-card stat-card--gold">
+            <div class="stat-val" id="sc-winpct">65.5%</div>
+            <div class="stat-lbl">WIN %</div>
+          </div>
+        </div>
+
+        <div class="season-breakdown">
+          <h3 class="sb-heading">Season Breakdown</h3>
+          <div class="sb-row">
+            <span class="sb-season">2023-24</span>
+            <div class="sb-bar-wrap"><div class="sb-bar" style="width: 97%"></div></div>
+            <span class="sb-ppg">21.7</span>
+          </div>
+          <div class="sb-row">
+            <span class="sb-season">2024-25</span>
+            <div class="sb-bar-wrap"><div class="sb-bar" style="width: 100%"></div></div>
+            <span class="sb-ppg">22.3</span>
+          </div>
+          <div class="sb-row">
+            <span class="sb-season">2025-26</span>
+            <div class="sb-bar-wrap"><div class="sb-bar" style="width: 100%"></div></div>
+            <span class="sb-ppg">22.4</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+      <div class="season-tabs" id="seasonTabs">
+        <button class="tab active" onclick="selectSeason('Career', this)">Career</button>
+        <button class="tab" onclick="selectSeason('2023-24', this)">2023-24</button>
+        <button class="tab" onclick="selectSeason('2024-25', this)">2024-25</button>
+        <button class="tab" onclick="selectSeason('2025-26', this)">2025-26</button>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-box chart-box--wide">
+          <h3 class="chart-title">Points Per Game</h3>
+          <div class="chart-wrap">
+            <canvas id="ppgChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-box">
+          <h3 class="chart-title">Shooting Splits</h3>
+          <div class="chart-wrap">
+            <canvas id="shootingChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-log-section">
+        <div class="game-log-header">
+          <h3 class="chart-title">Game Log</h3>
+          <span class="game-log-count" id="gameCount">58 games</span>
+        </div>
+        <div class="table-scroll">
+          <table class="game-log">
+            <thead>
+              <tr>
+                <th>Season</th>
+                <th>Gm</th>
+                <th>League</th>
+                <th>PTS</th>
+                <th>FT</th>
+                <th>3PT</th>
+                <th>Result</th>
+                <th>THS</th>
+              </tr>
+            </thead>
+            <tbody id="gameLogBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Zach Burnside · Career Stats 2023–2026 · Built for portfolio</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
