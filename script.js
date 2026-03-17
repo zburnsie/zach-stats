@@ -62,6 +62,7 @@ const ALL_GAMES = [
   { season: '2025-26', game: 16, league: 'Intramurals', points: 21, ftMade: 1,  ftAtt: 3,  threeMade: 2, threeAtt: 5,  result: 'W', ths: false },
   { season: '2025-26', game: 17, league: 'Copperview',  points: 21, ftMade: 7,  ftAtt: 14, threeMade: 0, threeAtt: 1,  result: 'W', ths: true  },
   { season: '2025-26', game: 18, league: 'Copperview',  points: 23, ftMade: 5, ftAtt: 6, threeMade: 2, threeAtt: 3, result: 'L', ths: true },
+  { season: '2025-26', game: 19, league: 'Copperview', points: 33, ftMade: 6, ftAtt: 7, threeMade: 1, threeAtt: 3, result: 'L', ths: true },
 ];
 
 // ─── Stats Calculator ──────────────────────────────────────────
