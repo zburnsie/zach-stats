@@ -357,9 +357,60 @@ function renderGameLog(games) {
   });
 }
 
+// ─── Card Data ────────────────────────────────────────────────
+function renderCardData() {
+  const seasons = ['2023-24', '2024-25', '2025-26'];
+  const rowIds  = ['br-2324', 'br-2425', 'br-2526'];
+
+  seasons.forEach((s, i) => {
+    const sg = ALL_GAMES.filter(g => g.season === s);
+    const st = calcStats(sg);
+    if (!st) return;
+    const spans = document.getElementById(rowIds[i]).querySelectorAll('span');
+    spans[1].textContent = st.gp;
+    spans[2].textContent = st.ppg;
+    spans[3].textContent = st.ftPct;
+    spans[4].textContent = st.threePct;
+  });
+
+  const career = calcStats(ALL_GAMES);
+  document.getElementById('back-games').textContent        = career.gp;
+  document.getElementById('back-career-ppg').textContent   = career.ppg;
+  document.getElementById('back-career-ft').textContent    = career.ftPct;
+  document.getElementById('back-career-3pt').textContent   = career.threePct;
+  document.getElementById('back-games-highlight').textContent = career.gp;
+  document.getElementById('back-record').textContent       = career.record;
+  document.getElementById('back-high').textContent         = career.highGame;
+
+  document.getElementById('card-ppg').textContent  = career.ppg;
+  document.getElementById('card-ft').textContent   = career.ftPct;
+  document.getElementById('card-3pt').textContent  = career.threePct;
+}
+
+// ─── Season Breakdown Bars ────────────────────────────────────
+function renderSeasonBreakdown() {
+  const seasons = ['2023-24', '2024-25', '2025-26'];
+  const ppgs = seasons.map(s => {
+    const sg = ALL_GAMES.filter(g => g.season === s);
+    return sg.length ? parseFloat((sg.reduce((a, g) => a + g.points, 0) / sg.length).toFixed(1)) : 0;
+  });
+  const maxPpg = Math.max(...ppgs);
+
+  const rows = document.querySelectorAll('.sb-row');
+  rows.forEach((row, i) => {
+    const bar = row.querySelector('.sb-bar');
+    const label = row.querySelector('.sb-ppg');
+    const pct = maxPpg > 0 ? ((ppgs[i] / maxPpg) * 100).toFixed(1) : 0;
+    bar.style.width = pct + '%';
+    label.textContent = ppgs[i];
+  });
+}
+
 // ─── Init ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   selectSeason('Career', null);
+  renderCardData();
+  renderSeasonBreakdown();
 
   // Animate stat bars on load
   setTimeout(() => {
